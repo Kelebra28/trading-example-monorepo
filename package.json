@@ -1,0 +1,26 @@
+{
+  "name": "mi-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.0"
+  },
+  "dependencies": {
+    "@tanstack/react-table": "^8.21.2",
+    "axios": "^1.8.1",
+    "chart.js": "^4.4.8",
+    "chartjs-plugin-zoom": "^2.2.0",
+    "react-chartjs-2": "^5.3.0",
+    "zod": "^3.24.2"
+  }
+}
