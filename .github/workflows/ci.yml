@@ -1,0 +1,33 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/frontend  # Ajusta según tu app principal
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"  # Usa la misma versión que en tu entorno local
+          cache: "yarn"
+      
+      - name: Install Dependencies
+        run: yarn install --immutable  # Equivalente a --frozen-lockfile
+      
+      - name: Build Projects
+        run: yarn turbo run build --filter=...  # Build de todo el monorepo
+      
+      - name: Run Tests (si tienes)
+        run: yarn test

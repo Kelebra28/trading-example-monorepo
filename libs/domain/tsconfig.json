@@ -9,11 +9,11 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@domain/*": ["../domain/src/*"]
+      "@utils/*": ["../utils/src/*"]
     }
   },
-  "include": ["src", "../../apps/frontend/src/hooks"],
+  "include": ["src"],
   "references": [
-    { "path": "../domain" }
+    { "path": "../utils" }
   ]
 }

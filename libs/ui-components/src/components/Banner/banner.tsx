@@ -1,31 +1,8 @@
-'use client';
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { CurrencyData, WSClient } from '../../../../utils/src';
+'use client'
+import { BannerProps } from "../../../../utils/src";
 
-export const Banner = () => {
-  const [currencyData, setCurrencyData] = useState<CurrencyData | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-
-  useEffect(() => {
-    WSClient.connect('wss://fe-challenge.cicadatech.net/live-data');
-    const handleData = (data: CurrencyData) => {
-      setCurrencyData(data);
-      setLastUpdated(new Date());
-      setError(null);
-    };
-
-    const handleError = (err: any) => {
-      setError('Failed to connect to live data feed');
-    };
-
-    const unsubscribe = WSClient.subscribe(handleData);
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+export const Banner = ({ useCurrencyData }: BannerProps) => {
+  const { currencyData, error, lastUpdated } = useCurrencyData();
 
   return (
     <div className="bg-card rounded-lg p-6 shadow-md border">
@@ -38,10 +15,8 @@ export const Banner = () => {
             </p>
           </div>
           <div className="text-right">
+            <span className="text-sm text-muted-foreground">Point value</span>
             <p className="text-3xl font-mono">{currencyData.point.toFixed(2)}</p>
-            <span className="text-sm text-muted-foreground">
-              Point value
-            </span>
           </div>
         </div>
       ) : (

@@ -11,11 +11,11 @@ import React from 'react';
 
 interface DataGridProps<T> {
   data: T[];
-  columns: ColumnDef<T>[];
+  columns: ColumnDef<T, unknown>[];
 }
 
 export const DataGrid = <T,>({ data, columns }: DataGridProps<T>) => {
-  const table = useReactTable({
+  const table = useReactTable<T>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -23,40 +23,50 @@ export const DataGrid = <T,>({ data, columns }: DataGridProps<T>) => {
   });
 
   return (
-    <div className="rounded-md border overflow-x-auto">
-      <table className="w-full">
-        <thead className="bg-muted">
-          {table.getHeaderGroups().map((headerGroup: { id: React.Key | null | undefined; headers: any[]; }) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th
-                  key={header.id}
-                  className="px-4 py-3 text-left text-sm font-medium"
-                >
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody className="divide-y">
-          {table.getRowModel().rows.map((row: { id: React.Key | null | undefined; getVisibleCells: () => any[]; }) => (
-            <tr key={row.id} className="hover:bg-muted/50">
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id} className="px-4 py-3 text-sm">
-                  {flexRender(
-                    cell.column.columnDef.cell,
-                    cell.getContext()
-                  )}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="rounded-md border overflow-hidden shadow-lg">
+      <div className="relative max-h-[500px] overflow-auto">
+        <table className="w-full">
+          <thead className="sticky top-0 bg-gray-100 z-10">
+            {table.getHeaderGroups().map(headerGroup => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map(header => (
+                  <th
+                    key={header.id}
+                    className="px-4 py-3 text-center text-sm font-semibold text-gray-700"
+                    style={{ minWidth: header.getSize() }}
+                  >
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          
+          <tbody className="divide-y divide-gray-200">
+            {table.getRowModel().rows.map(row => (
+              <tr
+                key={row.id}
+                className="hover:bg-gray-50 transition-colors"
+              >
+                {row.getVisibleCells().map(cell => (
+                  <td
+                    key={cell.id}
+                    className="px-4 py-2 align-middle text-center text-sm text-gray-600"
+                  >
+                    {flexRender(
+                      cell.column.columnDef.cell,
+                      cell.getContext()
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

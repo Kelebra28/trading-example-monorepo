@@ -1,4 +1,4 @@
-import { CurrencyData } from "./types/types";
+import { CurrencyData } from "@utils/types";
 
 export class WSClient {
   private static instance: WebSocket | null = null;
@@ -17,7 +17,8 @@ export class WSClient {
     if (!this.instance) return;
 
     this.instance.onopen = () => {
-      console.log('WebSocket connection established'); 
+      console.log('WebSocket connection established');
+      this.retries = 0; 
     };
 
     this.instance.onmessage = (event) => {
@@ -39,6 +40,8 @@ export class WSClient {
       if (this.retries < this.MAX_RETRIES) {
         setTimeout(() => this.connect(this.instance?.url || ''), 3000);
         this.retries++;
+      } else {
+        console.error('Max retries reached. Giving up.');
       }
     };
   }
@@ -52,5 +55,21 @@ export class WSClient {
   static subscribe(callback: (data: CurrencyData) => void): () => void {
     this.listeners.add(callback);
     return () => this.listeners.delete(callback);
+  }
+
+  static getConnectionState(): string {
+    if (!this.instance) return 'CLOSED';
+    switch (this.instance.readyState) {
+      case WebSocket.CONNECTING:
+        return 'CONNECTING';
+      case WebSocket.OPEN:
+        return 'OPEN';
+      case WebSocket.CLOSING:
+        return 'CLOSING';
+      case WebSocket.CLOSED:
+        return 'CLOSED';
+      default:
+        return 'UNKNOWN';
+    }
   }
 }

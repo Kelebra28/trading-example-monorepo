@@ -12,7 +12,7 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@mi-monorepo/utils": ["../../utils/src"]
+      "@monorepo/utils": ["../../utils/src"]
     },
     "skipLibCheck": true
   },

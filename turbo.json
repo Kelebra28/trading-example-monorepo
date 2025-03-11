@@ -2,16 +2,20 @@
     "pipeline": {
       "build": {
         "dependsOn": ["^build"],
-        "outputs": ["dist/**"]
+        "outputs": ["dist/**", ".next/**"],
+        "env": ["NEXT_PUBLIC_API_URL", "NEXT_PUBLIC_SOCKET_URL"]
       },
       "lint": {
         "outputs": []
       },
       "dev": {
-        "cache": false
+        "cache": false,
+        "persistent": true,
+        "env": ["NEXT_PUBLIC_API_URL", "NEXT_PUBLIC_SOCKET_URL"]
       },
       "test": {
-        "outputs": []
+        "dependsOn": ["build"],
+        "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*"]
       }
     }
   }

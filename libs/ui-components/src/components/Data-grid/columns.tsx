@@ -1,39 +1,61 @@
-'use client';
+"use client";
 
-import { ColumnDef } from '@tanstack/react-table';
+import { ColumnDef } from "@tanstack/react-table";
+import {
+  HistoricalData,
+  DailyTrendData,
+  formatDate,
+  formatNumber,
+  getColorClass
+} from "../../../../utils/src";
 
-export type HistoricalData = {
-  date: string;
-  open: string;
-  high: string;
-  low: string;
-  close: string;
-};
-
-export type DailyTrendData = {
-  date: string | number | Date;
-  difference: number;
-  volatility: number;
-};
 
 export const historicalColumns: ColumnDef<HistoricalData>[] = [
   {
-    header: 'Date',
-    accessorKey: 'date',
-    cell: (info) => new Date(info.getValue() as string).toLocaleDateString(),
+    header: "Date",
+    accessorKey: "date",
+    cell: (info) => formatDate(new Date(info.getValue<string>())),
   },
-  { header: 'Open', accessorKey: 'open' },
-  { header: 'Close', accessorKey: 'close' },
-  { header: 'High', accessorKey: 'high' },
-  { header: 'Low', accessorKey: 'low' },
+  {
+    header: "High",
+    accessorKey: "high",
+    cell: (info) => formatNumber(info.getValue<number>()),
+  },
+  {
+    header: "Low",
+    accessorKey: "low",
+    cell: (info) => formatNumber(info.getValue<number>()),
+  },
 ];
 
 export const trendColumns: ColumnDef<DailyTrendData>[] = [
   {
-    header: 'Date',
-    accessorKey: 'date',
-    cell: (info) => new Date(info.getValue() as string | number | Date).toLocaleDateString(),
+    header: "Date",
+    accessorKey: "date",
+    cell: (info) => formatDate(new Date(info.getValue<string>())),
   },
-  { header: 'Difference', accessorKey: 'difference' },
-  { header: 'Volatility', accessorKey: 'volatility' },
+  {
+    header: "Open",
+    accessorKey: "open",
+    cell: (info) => formatNumber(info.getValue<number>()),
+  },
+  {
+    header: "Close",
+    accessorKey: "close",
+    cell: (info) => formatNumber(info.getValue<number>()),
+  },
+  {
+    header: "Diference",
+    accessorKey: "difference",
+    cell: (info) => {
+      const value = info.getValue<number>();
+      const colorClass = getColorClass(value);
+      console.log(colorClass)
+      return (
+        <span className={`${colorClass} font-medium`}>
+          {formatNumber(value)}
+        </span>
+      );
+    },
+  }
 ];

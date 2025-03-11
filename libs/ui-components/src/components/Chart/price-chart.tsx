@@ -25,23 +25,19 @@ ChartJS.register(
   zoomPlugin
 );
 
-interface PriceChartProps {
-  data: Array<{
-    timestamp: number;
-    close: number;
-  }>;
-}
+import { PriceChartProps } from '../../../../../libs/utils/src';
+import { formatDate } from '../../../../../libs/utils/src';
 
 export const PriceChart = ({ data }: PriceChartProps) => {
   const chartData = {
-    labels: data.map(d => new Date(d.timestamp).toLocaleDateString()),
+    labels: data.map(d => formatDate(new Date(d.timestamp))),
     datasets: [
       {
-        label: 'Closing Price',
-        data: data.map(d => d.close),
+        label: 'High Price',
+        data: data.map(d => d.high),
         borderColor: 'hsl(221.2 83.2% 53.3%)',
         tension: 0.1,
-        pointRadius: 2,
+        pointRadius: 4,
       },
     ],
   };
