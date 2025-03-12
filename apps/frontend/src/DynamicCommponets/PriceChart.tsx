@@ -1,4 +1,3 @@
-
 'use client'; 
 import dynamic from 'next/dynamic';
 import { PriceChartProps } from '../../../../libs/utils/src/types/';

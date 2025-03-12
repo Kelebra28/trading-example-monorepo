@@ -3,8 +3,8 @@ import {
   Banner,
   SymbolTabs,
 } from "../../../../libs/ui-components/src";
-import { useCurrencyData, useHistoricalData } from "@/hooks/";
-import { HistoricalDataWrapper } from "./Wrappers/HistoricalDataWrapper";
+import { useCurrencyData, useSymbolTabs } from "@/hooks/";
+import { HistoricalDataWrapper } from "../Wrappers/HistoricalDataWrapper";
 
 
 const DashboardPage = async ({
@@ -20,7 +20,7 @@ const DashboardPage = async ({
       <Suspense fallback={<div>Loading...</div>}>
         <div className="space-y-4">
           <h1 className="text-3xl font-bold">Currency Dashboard</h1>
-          <SymbolTabs />
+          <SymbolTabs useSymbolTabs={useSymbolTabs}  />
           <Banner useCurrencyData={useCurrencyData} />
         </div>
 

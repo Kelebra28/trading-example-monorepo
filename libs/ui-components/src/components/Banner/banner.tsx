@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { BannerProps } from "../../../../utils/src";
 
 export const Banner = ({ useCurrencyData }: BannerProps) => {
@@ -16,7 +16,9 @@ export const Banner = ({ useCurrencyData }: BannerProps) => {
           </div>
           <div className="text-right">
             <span className="text-sm text-muted-foreground">Point value</span>
-            <p className="text-3xl font-mono">{currencyData.point.toFixed(2)}</p>
+            <p className="text-3xl font-mono">
+              {currencyData.point.toFixed(2)}
+            </p>
           </div>
         </div>
       ) : (

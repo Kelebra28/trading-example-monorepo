@@ -1,19 +1,23 @@
-// HistoricalDataWrapper.tsx
-'use client'; // <-- Esto es crucial
+"use client";
 
-import { useHistoricalData } from "@/hooks/useHistoricalData";
-import { calculateDailyTrend, transformHistoricalData } from "../../../../../libs/utils/src";
-import PriceChartWrapper from "../../DynamicCommponets/PriceChart";
-import { DataGrid, historicalColumns, trendColumns} from "../../../../../libs/ui-components/src";
+import {
+  DataGrid,
+  historicalColumns,
+  trendColumns,
+} from "../../../../libs/ui-components/src";
+import PriceChartWrapper from "@/DynamicCommponets/PriceChart";
+import { HistoricalDataViewProps } from "../../../../libs/utils/src";
 
-export const HistoricalDataWrapper = ({ symbol }: { symbol: string }) => {
-  const { data: historicalData, loading, error } = useHistoricalData(symbol);
-
+export const HistoricalDataView = ({
+  historicalData,
+  dailyTrendData,
+  transformedHistoricalData,
+  symbol,
+  loading,
+  error,
+}: HistoricalDataViewProps) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
-  const dailyTrendData = calculateDailyTrend(historicalData);
-  const transformedHistoricalData = transformHistoricalData(historicalData);
 
   return (
     <>

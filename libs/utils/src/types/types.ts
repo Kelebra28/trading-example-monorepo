@@ -1,5 +1,4 @@
-import { CurrencyData } from "./interface";
-
+import { CurrencyData, } from "./interface";
 export type DailyTrendData = {
   date: Date;
   open: number;
@@ -33,3 +32,11 @@ export type UseCurrencyDataReturn = {
 };
 
 export type UseCurrencyData = () => UseCurrencyDataReturn;
+
+export type SymbolPair = { display: string, apiParam: string };
+
+export type UseSymbolTabsType = () => {
+  currentSymbol: string;
+  handleSelectSymbol: (symbol: string) => void;
+  SymbolPairs: SymbolPair[];
+};

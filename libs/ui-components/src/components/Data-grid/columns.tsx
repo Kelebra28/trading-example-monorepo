@@ -6,9 +6,8 @@ import {
   DailyTrendData,
   formatDate,
   formatNumber,
-  getColorClass
+  getColorClass,
 } from "../../../../utils/src";
-
 
 export const historicalColumns: ColumnDef<HistoricalData>[] = [
   {
@@ -56,5 +55,5 @@ export const trendColumns: ColumnDef<DailyTrendData>[] = [
         </span>
       );
     },
-  }
+  },
 ];

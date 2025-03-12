@@ -16,6 +16,6 @@
     },
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "../../utils/src/**/*"], // Incluye los archivos de utils
+  "include": ["src/**/*", "../../utils/src/**/*"],
   "exclude": ["node_modules"]
 }

@@ -1,9 +1,8 @@
-'use client'
-import { useEffect, useState } from 'react';
-import 'dotenv/config'
-import { WSClient } from '../../../../libs/domain/src';
-import { CurrencyData } from '../../../../libs/utils/src';
-
+"use client";
+import { useEffect, useState } from "react";
+import "dotenv/config";
+import { WSClient } from "../../../../libs/domain/src";
+import { CurrencyData } from "../../../../libs/utils/src";
 
 export const useCurrencyData = () => {
   const [currencyData, setCurrencyData] = useState<CurrencyData | null>(null);

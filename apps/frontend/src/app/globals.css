@@ -1,9 +1,7 @@
-/* apps/frontend/src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Elimina el @import y @theme inline */
 :root {
   --background: #ffffff;
   --foreground: #171717;
