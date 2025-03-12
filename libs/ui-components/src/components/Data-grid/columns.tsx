@@ -50,7 +50,6 @@ export const trendColumns: ColumnDef<DailyTrendData>[] = [
     cell: (info) => {
       const value = info.getValue<number>();
       const colorClass = getColorClass(value);
-      console.log(colorClass)
       return (
         <span className={`${colorClass} font-medium`}>
           {formatNumber(value)}

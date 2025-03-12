@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { HistoricalData, DailyTrendData } from '../types/types';
 import { fetchCurrencyPairs , fetchHistoricalData , axiosClient  } from '../../../domain/dist';
 

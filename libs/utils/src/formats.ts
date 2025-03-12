@@ -3,13 +3,22 @@ export const formatNumber = (value: number): string => {
     return truncated.toFixed(3);
   };
   
-export  const formatDate = (date: Date): string => {
+  export const formatDate = (date: Date): string => {
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+      return 'Invalid Date';
+    }
+  
     return new Intl.DateTimeFormat('en-US', {
       month: 'short',
       day: '2-digit',
       year: 'numeric',
-    }).format(date).replace(/ /g, '-');
+      timeZone: 'UTC',
+    })
+      .format(date)
+      .replace(/,?\s+/g, '-') 
+      .replace(/-$/, '');
   };
+  
 
   export const formatSymbol = (symbol: string): string => {
     if (symbol.length === 6) {

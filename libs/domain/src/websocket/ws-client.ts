@@ -1,11 +1,10 @@
 import { CurrencyData } from "@utils/types";
-
 export class WSClient {
   private static instance: WebSocket | null = null;
   private static listeners = new Set<(data: CurrencyData) => void>();
   private static retries = 0;
   private static MAX_RETRIES = 5;
-
+  
   static connect(url: string) {
     if (!this.instance || this.instance.readyState === WebSocket.CLOSED) {
       this.instance = new WebSocket(url);
@@ -38,14 +37,15 @@ export class WSClient {
     this.instance.onclose = () => {
       console.log('WebSocket connection closed');
       if (this.retries < this.MAX_RETRIES) {
-        setTimeout(() => this.connect(this.instance?.url || ''), 3000);
-        this.retries++;
+        setTimeout(() => {
+          this.connect(this.instance?.url || '');
+          this.retries++;
+        }, 3000);
       } else {
         console.error('Max retries reached. Giving up.');
       }
     };
   }
-
   private static validateData(data: any): asserts data is CurrencyData {
     if (!data?.pair || typeof data?.point !== 'number') {
       throw new Error('Invalid WebSocket data format');
