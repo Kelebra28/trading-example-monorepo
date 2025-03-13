@@ -1,12 +1,11 @@
-"use client";
-
+"use-client"
 import { ColumnDef } from "@tanstack/react-table";
-import {
-  HistoricalData,
+import { 
+  HistoricalData, 
   DailyTrendData,
   formatDate,
   formatNumber,
-  getColorClass,
+  getColorClass 
 } from "../../../../utils/src";
 
 export const historicalColumns: ColumnDef<HistoricalData>[] = [

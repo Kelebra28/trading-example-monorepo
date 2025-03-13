@@ -48,4 +48,18 @@ export interface SymbolTabsProps {
     handleSelectSymbol: (symbol: string) => void;
     SymbolPairs: readonly SymbolPair[];
   };
+}export interface BannerViewModel {
+  pair?: string;
+  pointValue?: string;
+  lastUpdatedTime?: string;
+  error?: string | null;
+}
+
+export interface SymbolTabsViewModel {
+  currentSymbol: string;
+  symbolPairs: SymbolPair[];
+  onSelectSymbol: (symbol: string) => void;
+}
+export interface HistoricalDataWrapperProps {
+  symbol: string;
 }

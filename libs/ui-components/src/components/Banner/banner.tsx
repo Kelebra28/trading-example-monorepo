@@ -1,24 +1,22 @@
 "use client";
-import { BannerProps } from "../../../../utils/src";
+import { BannerViewModel } from "../../../../utils/src";
 
-export const Banner = ({ useCurrencyData }: BannerProps) => {
-  const { currencyData, error, lastUpdated } = useCurrencyData();
+export const Banner = ({ viewModel }: { viewModel: BannerViewModel }) => {
+  const { pair, pointValue, lastUpdatedTime, error } = viewModel;
 
   return (
     <div className="bg-card rounded-lg p-6 shadow-md border">
-      {currencyData ? (
+      {pair ? (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h1 className="text-2xl font-bold">{currencyData.pair}</h1>
+            <h1 className="text-2xl font-bold">{pair}</h1>
             <p className="text-muted-foreground text-sm">
-              Last updated: {lastUpdated?.toLocaleTimeString()}
+              Last updated: {lastUpdatedTime || "N/A"}
             </p>
           </div>
           <div className="text-right">
             <span className="text-sm text-muted-foreground">Point value</span>
-            <p className="text-3xl font-mono">
-              {currencyData.point.toFixed(2)}
-            </p>
+            <p className="text-3xl font-mono">{pointValue}</p>
           </div>
         </div>
       ) : (

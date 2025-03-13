@@ -1,25 +1,13 @@
 "use client";
 
-import { useHistoricalViewModel } from "@/hooks/useHistoricalViewModel";
+import { HistoricalDataWrapperProps } from "../../../../libs/utils/src";
 import { HistoricalDataView } from "@/components/HistoricalDataView";
+import { useHistoricalViewModel } from "@/hooks/useHistoricalViewModel";
 
-export const HistoricalDataWrapper = ({ symbol }: { symbol: string }) => {
-  const {
-    historicalData,
-    dailyTrendData,
-    transformedHistoricalData,
-    loading,
-    error,
-  } = useHistoricalViewModel(symbol);
+export const HistoricalDataWrapper = ({
+  symbol,
+}: HistoricalDataWrapperProps) => {
+  const viewModel = useHistoricalViewModel(symbol);
 
-  return (
-    <HistoricalDataView
-      historicalData={historicalData || []}
-      dailyTrendData={dailyTrendData}
-      transformedHistoricalData={transformedHistoricalData}
-      symbol={symbol}
-      loading={loading}
-      error={error}
-    />
-  );
+  return <HistoricalDataView {...viewModel} symbol={symbol} />;
 };

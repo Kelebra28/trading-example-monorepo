@@ -1,32 +1,30 @@
-"use client";
+
+'use client';
 
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import React from "react";
 
 interface DataGridProps<T> {
   data: T[];
-  columns: ColumnDef<T, unknown>[];
+  columns: ColumnDef<T>[];
 }
 
 export const DataGrid = <T,>({ data, columns }: DataGridProps<T>) => {
-  const table = useReactTable<T>({
+  const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
     <div className="rounded-md border overflow-hidden shadow-lg">
       <div className="relative max-h-[500px] overflow-auto">
         <table className="w-full">
-          <thead className="sticky top-0 bg-gray-100 z-10">
+        <thead className="sticky top-0 bg-gray-100 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (

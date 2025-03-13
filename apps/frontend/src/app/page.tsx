@@ -1,11 +1,6 @@
 import { Suspense } from "react";
-import {
-  Banner,
-  SymbolTabs,
-} from "../../../../libs/ui-components/src";
-import { useCurrencyData, useSymbolTabs } from "@/hooks/";
 import { HistoricalDataWrapper } from "../Wrappers/HistoricalDataWrapper";
-
+import { BannerContainer, SymbolTabsContainer } from "@/containers/";
 
 const DashboardPage = async ({
   searchParams,
@@ -13,15 +8,15 @@ const DashboardPage = async ({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
   const symbol =
-    typeof searchParams?.symbol === 'string' ? searchParams.symbol : 'AUDUSD';
-  
+    typeof searchParams?.symbol === "string" ? searchParams.symbol : "AUDUSD";
+
   return (
     <div className="container py-8 space-y-8">
       <Suspense fallback={<div>Loading...</div>}>
         <div className="space-y-4">
           <h1 className="text-3xl font-bold">Currency Dashboard</h1>
-          <SymbolTabs useSymbolTabs={useSymbolTabs}  />
-          <Banner useCurrencyData={useCurrencyData} />
+          <SymbolTabsContainer />
+          <BannerContainer />
         </div>
 
         <HistoricalDataWrapper symbol={symbol} />
