@@ -1,4 +1,4 @@
-import { colorMap } from "./constant/constant";
+import { colorMap } from "../constant/constant";
 
 export const colorKey = (value: number): "positive" | "negative" | "zero" => {
     if (value > 0) return "positive";

@@ -1,4 +1,3 @@
-// components/SymbolTabs.tsx
 "use client";
 
 import { SymbolTabsViewModel } from "../../../../utils/src";

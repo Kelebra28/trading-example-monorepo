@@ -1,4 +1,4 @@
-import { colorKey } from '../colors';
+import { colorKey } from '../styles/colors';
 
 describe('colorKey', () => {
   it('should return "positive" for values greater than 0', () => {

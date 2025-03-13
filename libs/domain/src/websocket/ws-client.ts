@@ -12,11 +12,28 @@ export class WSClient {
     }
   }
 
+  private static eventListeners = new Map<string, Set<Function>>();
+
+  static addEventListener(event: string, callback: Function) {
+    if (!this.eventListeners.has(event)) {
+      this.eventListeners.set(event, new Set());
+    }
+    this.eventListeners.get(event)?.add(callback);
+  }
+
+  static removeEventListener(event: string, callback: Function) {
+    this.eventListeners.get(event)?.delete(callback);
+  }
+
+  private static emit(event: string, ...args: any[]) {
+    this.eventListeners.get(event)?.forEach(cb => cb(...args));
+  }
+
   private static setupEventListeners() {
     if (!this.instance) return;
 
     this.instance.onopen = () => {
-      console.log('WebSocket connection established');
+      this.emit('connect');
       this.retries = 0; 
     };
 
@@ -35,7 +52,7 @@ export class WSClient {
     };
 
     this.instance.onclose = () => {
-      console.log('WebSocket connection closed');
+      this.emit('disconnect');
       if (this.retries < this.MAX_RETRIES) {
         setTimeout(() => {
           this.connect(this.instance?.url || '');
@@ -72,4 +89,5 @@ export class WSClient {
         return 'UNKNOWN';
     }
   }
+  
 }

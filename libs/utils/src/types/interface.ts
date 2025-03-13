@@ -4,6 +4,8 @@ import {
   HistoricalData,
   DailyTrendData,
   SymbolPair,
+  LoadingSize,
+  LoadingVariant
 } from "./types";
 
 export interface PriceChartProps {
@@ -53,6 +55,7 @@ export interface SymbolTabsProps {
   pointValue?: string;
   lastUpdatedTime?: string;
   error?: string | null;
+  loading?: boolean
 }
 
 export interface SymbolTabsViewModel {
@@ -62,4 +65,16 @@ export interface SymbolTabsViewModel {
 }
 export interface HistoricalDataWrapperProps {
   symbol: string;
+}
+
+export interface LoadingProps {
+  variant?: LoadingVariant;
+  size?: LoadingSize;
+  className?: string;
+  fullScreen?: boolean;
+  message?: string;
+}
+
+export interface PriceChartWrapperProps {
+  data: TransformedHistoricalData[];
 }

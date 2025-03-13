@@ -4,8 +4,9 @@ import {
   DataGrid,
   trendColumns,
   historicalColumns,
+  SkeletonLoader,
 } from "../../../../libs/ui-components/src";
-import PriceChartWrapper from "@/DynamicCommponets/PriceChart";
+import { PriceChartWrapper } from "@/Wrappers";
 
 import {
   HistoricalData,
@@ -30,7 +31,12 @@ export const HistoricalDataView = ({
   loading,
   error,
 }: HistoricalDataViewProps) => {
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="space-y-2">
+        <SkeletonLoader className="h-8 w-full" count={5} />
+      </div>
+    );
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -54,7 +60,7 @@ export const HistoricalDataView = ({
       </div>
 
       <div className="space-y-4">
-        <h2 className="text-xl font-bold">Price Chart - {symbol}</h2>
+        <h2 className="text-xl font-bold">Price Chart : {symbol}</h2>
         <PriceChartWrapper data={transformedHistoricalData} />
       </div>
     </>

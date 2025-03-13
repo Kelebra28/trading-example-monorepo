@@ -1,4 +1,4 @@
-import { getColorClass } from "../colors";
+import { getColorClass } from "../styles/colors";
 import { colorMap } from "../constant/constant";
 
 describe('getColorClass', () => {

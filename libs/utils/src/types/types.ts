@@ -40,3 +40,7 @@ export type UseSymbolTabsType = () => {
   handleSelectSymbol: (symbol: string) => void;
   SymbolPairs: SymbolPair[];
 };
+
+export type LoadingVariant = 'spinner' | 'dots' | 'skeleton';
+
+export type LoadingSize = 'sm' | 'md' | 'lg';
