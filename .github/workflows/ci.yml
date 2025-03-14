@@ -35,5 +35,8 @@ jobs:
       - name: Build Projects
         run: npx turbo run build --filter=/apps/* --filter=./libs/*
 
-      # - name: Run Tests
-      #   run: yarn test
+      - name: Run Tests for Domain
+        run: yarn workspace @monorepo/domain test
+
+      - name: Run Tests for Utils
+        run: yarn workspace @monorepo/utils test

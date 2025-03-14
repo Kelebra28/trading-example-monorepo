@@ -7,7 +7,6 @@ module.exports = {
     moduleNameMapper: {
       "^@monorepo/(.*)$": "<rootDir>/../../$1/src"
     },
-    setupFilesAfterEnv: ["<rootDir>/test/setup.ts"],
     testPathIgnorePatterns: ["/node_modules/", "/dist/"]
   };
   
