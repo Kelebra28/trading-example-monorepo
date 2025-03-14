@@ -4,16 +4,14 @@
     "rootDir": "./src",
     "composite": true,
     "declaration": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "strict": true,
-    "baseUrl": ".",
+    "declarationMap": true,
+    "skipLibCheck": true,
     "paths": {
-      "@utils/*": ["../utils/src/*"]
-    }
+      "@monorepo/utils": ["../../utils/dist"]
+    },
+    "moduleResolution": "node",
+    "module": "commonjs"
   },
-  "include": ["src"],
-  "references": [
-    { "path": "../utils" }
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }

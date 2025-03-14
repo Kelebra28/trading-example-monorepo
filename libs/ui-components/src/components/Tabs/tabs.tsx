@@ -1,6 +1,6 @@
 "use client";
 
-import { SymbolTabsViewModel } from "../../../../utils/src";
+import { SymbolTabsViewModel } from "@monorepo/utils";
 
 export const SymbolTabs = ({ 
   currentSymbol,

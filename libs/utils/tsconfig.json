@@ -1,19 +1,24 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "dist",
+    "rootDir": "src",
+    "noEmit": false,
     "composite": true,
     "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "dist/types",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "strict": true,
     "baseUrl": ".",
+    "lib": ["es2018", "dom"],
+    "target": "es2018",
+   "types": ["parse5", "jest", "node"],
     "paths": {
-      "@domain/*": ["../domain/src/*"]
+      "@monorepo/domain": ["../../domain/dist"],
+      "parse5": ["node_modules/@types/parse5"]
     }
   },
-  "include": ["src", "../../apps/frontend/src/hooks"],
-  "references": [
-    { "path": "../domain" }
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["**/*.test.ts", "**/test/**", "dist", "node_modules"]
 }

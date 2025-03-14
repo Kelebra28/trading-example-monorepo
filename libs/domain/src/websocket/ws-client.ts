@@ -1,4 +1,4 @@
-import { CurrencyData } from "@utils/types";
+import { CurrencyData } from "@monorepo/utils";
 export class WSClient {
   private static instance: WebSocket | null = null;
   private static listeners = new Set<(data: CurrencyData) => void>();

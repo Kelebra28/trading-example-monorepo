@@ -6,53 +6,53 @@ import {
   formatDate,
   formatNumber,
   getColorClass 
-} from "../../../../utils/src";
+} from "@monorepo/utils";
 
-export const historicalColumns: ColumnDef<HistoricalData>[] = [
+export const historicalColumns = [
   {
     header: "Date",
-    accessorKey: "date",
+    accessorKey: "date" as const,
     cell: (info) => formatDate(new Date(info.getValue<string>())),
   },
   {
     header: "High",
-    accessorKey: "high",
-    cell: (info) => formatNumber(info.getValue<number>()),
+    accessorKey: "high" as const,
+    cell: (info) => formatNumber(parseFloat(info.getValue<string>())),
   },
   {
     header: "Low",
-    accessorKey: "low",
-    cell: (info) => formatNumber(info.getValue<number>()),
+    accessorKey: "low" as const,
+    cell: (info) => formatNumber(parseFloat(info.getValue<string>())),
   },
-];
+] satisfies ColumnDef<HistoricalData, keyof HistoricalData>[];;
 
-export const trendColumns: ColumnDef<DailyTrendData>[] = [
+export const trendColumns = [
   {
     header: "Date",
-    accessorKey: "date",
-    cell: (info) => formatDate(new Date(info.getValue<string>())),
+    accessorKey: "date" as const,
+    cell: (info) => formatDate(info.getValue<Date>()),
   },
   {
     header: "Open",
-    accessorKey: "open",
-    cell: (info) => formatNumber(info.getValue<number>()),
+    accessorKey: "open" as const,
+    cell: (info) => formatNumber(parseFloat(info.getValue<string>())),
   },
   {
     header: "Close",
-    accessorKey: "close",
-    cell: (info) => formatNumber(info.getValue<number>()),
+    accessorKey: "close" as const,
+    cell: (info) => formatNumber(parseFloat(info.getValue<string>())),
   },
   {
     header: "Diference",
-    accessorKey: "difference",
+    accessorKey: "difference" as const,
     cell: (info) => {
       const value = info.getValue<number>();
       const colorClass = getColorClass(value);
       return (
         <span className={`${colorClass} font-medium`}>
-          {formatNumber(value)}
+          {formatNumber(parseFloat(info.getValue<string>()))}
         </span>
       );
     },
   },
-];
+]  satisfies ColumnDef<DailyTrendData, keyof DailyTrendData>[];;

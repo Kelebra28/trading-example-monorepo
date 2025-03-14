@@ -5,23 +5,13 @@ import {
   trendColumns,
   historicalColumns,
   SkeletonLoader,
-} from "../../../../libs/ui-components/src";
+} from "@monorepo/ui-components";
 import { PriceChartWrapper } from "@/Wrappers";
-
 import {
   HistoricalData,
   DailyTrendData,
-  TransformedHistoricalData,
-} from "../../../../libs/utils/src";
-
-interface HistoricalDataViewProps {
-  historicalData: HistoricalData[];
-  dailyTrendData: DailyTrendData[];
-  transformedHistoricalData: TransformedHistoricalData[];
-  symbol: string;
-  loading: boolean;
-  error?: string | null;
-}
+  HistoricalDataViewProps,
+} from "@monorepo/utils/types";
 
 export const HistoricalDataView = ({
   historicalData,

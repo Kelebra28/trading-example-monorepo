@@ -1,5 +1,5 @@
 import { WSClient } from "../websocket/ws-client";
-import { CurrencyData } from "@utils/types";
+import { CurrencyData } from "@monorepo/utils";
 
 
 class MockWebSocket {
@@ -45,18 +45,17 @@ class MockWebSocket {
   }
 }
 
-// 2. Reemplazar WebSocket global ANTES de cualquier importación
 global.WebSocket = MockWebSocket as any;
 
 describe("WSClient", () => {
   const url = "ws://example.com";
 
   beforeEach(() => {
-    // 3. Resetear todas las instancias y estados estáticos
     MockWebSocket.instances = [];
     WSClient["listeners"].clear();
+    WSClient["eventListeners"].clear();
     WSClient["retries"] = 0;
-    WSClient["instance"] = null; // Forzar nueva conexión en cada prueba
+    WSClient["instance"] = null; 
   });
 
   it("should establish a WebSocket connection", () => {
@@ -66,15 +65,18 @@ describe("WSClient", () => {
   });
 
   it("should handle the onopen event", () => {
-    const consoleSpy = jest.spyOn(console, "log").mockImplementation(() => {});
+    const connectHandler = jest.fn();
     
+    WSClient.addEventListener('connect', connectHandler);
     WSClient.connect(url);
+    
     const instance = MockWebSocket.instances[0];
     instance.simulateOpen();
-
-    expect(consoleSpy).toHaveBeenCalledWith("WebSocket connection established");
+  
+    expect(connectHandler).toHaveBeenCalled();
     expect(WSClient["retries"]).toBe(0);
-    consoleSpy.mockRestore();
+    
+    WSClient.removeEventListener('connect', connectHandler);
   });
 
   it("should handle the onmessage event with valid data", () => {
@@ -92,7 +94,7 @@ describe("WSClient", () => {
 
   it("should handle the onmessage event with invalid data", () => {
     const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
-    const invalidData = { pair: "EURUSD" }; // Sin 'point'
+    const invalidData = { pair: "EURUSD" }; 
 
     WSClient.connect(url);
     const instance = MockWebSocket.instances[0];
@@ -116,18 +118,20 @@ describe("WSClient", () => {
 
   it("should handle the onclose event and reconnect", () => {
     jest.useFakeTimers();
-    const consoleSpy = jest.spyOn(console, "log").mockImplementation(() => {});
-
+    const disconnectHandler = jest.fn();
+    
+    WSClient.addEventListener('disconnect', disconnectHandler);
     WSClient.connect(url);
+    
     const instance = MockWebSocket.instances[0];
     instance.simulateClose();
-
-    expect(consoleSpy).toHaveBeenCalledWith("WebSocket connection closed");
+  
+    expect(disconnectHandler).toHaveBeenCalled();
     
     jest.advanceTimersByTime(3000);
-    expect(MockWebSocket.instances.length).toBe(2); // Nueva instancia tras reconexión
-
-    consoleSpy.mockRestore();
+    expect(MockWebSocket.instances.length).toBe(2);
+    
+    WSClient.removeEventListener('disconnect', disconnectHandler);
     jest.useRealTimers();
   });
 
@@ -138,7 +142,6 @@ describe("WSClient", () => {
     WSClient.connect(url);
     let instance = MockWebSocket.instances[0];
 
-    // Simular MAX_RETRIES cierres + 1 para superar el límite
     for (let i = 0; i <= WSClient["MAX_RETRIES"]; i++) {
       instance.simulateClose();
       jest.advanceTimersByTime(3000);

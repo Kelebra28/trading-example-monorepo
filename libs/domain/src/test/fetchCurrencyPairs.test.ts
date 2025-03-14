@@ -1,5 +1,5 @@
 import { fetchCurrencyPairs } from '../fetchs';
-import { HttpClient } from '@utils/types';
+import { HttpClient } from '@monorepo/utils';
 
 describe('fetchCurrencyPairs', () => {
   const mockHttpClient = {
@@ -14,7 +14,7 @@ describe('fetchCurrencyPairs', () => {
 
   it('should handle empty or invalid API response', async () => {
     const mockResponse = {
-      data: {}, // Respuesta vacía
+      data: {}, 
     };
   
     mockHttpClient.get.mockResolvedValue(mockResponse);
@@ -22,7 +22,7 @@ describe('fetchCurrencyPairs', () => {
     const result = await fetchCurrencyPairs(mockHttpClient, baseUrl);
   
     expect(mockHttpClient.get).toHaveBeenCalledWith(`${baseUrl}/pairs`);
-    expect(result).toEqual([]); // Esperamos un array vacío
+    expect(result).toEqual([]);
   });
 
   it('should throw an error if baseUrl is invalid', async () => {
@@ -34,7 +34,6 @@ describe('fetchCurrencyPairs', () => {
   });
 
   it('should fetch and transform currency pairs correctly', async () => {
-    // Mock de la respuesta de la API
     const mockResponse = {
       data: {
         'AUDUSD': 'AUD-USD',
@@ -60,7 +59,6 @@ describe('fetchCurrencyPairs', () => {
   });
 
   it('should throw an error if the API call fails', async () => {
-    // Mock de un error en la API
     const mockError = new Error('Network error');
     mockHttpClient.get.mockRejectedValue(mockError);
 

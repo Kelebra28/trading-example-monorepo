@@ -1,6 +1,6 @@
 "use client";
 
-import { HistoricalDataWrapperProps } from "../../../../libs/utils/src";
+import { HistoricalDataWrapperProps } from "@monorepo/utils/types";
 import { HistoricalDataView } from "@/components/HistoricalDataView";
 import { useHistoricalViewModel } from "@/hooks/useHistoricalViewModel";
 

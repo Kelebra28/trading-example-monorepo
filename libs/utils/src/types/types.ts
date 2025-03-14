@@ -1,24 +1,11 @@
-import { CurrencyData, } from "./interface";
-export type DailyTrendData = {
+import { CurrencyData } from "./interface";
+import { SymbolPair } from "./financial-types";
+
+export type ProcessedDailyTrend = {
   date: Date;
-  open: number;
-  close: number;
   difference: number;
   volatility: number;
-  };
-  export type HistoricalData = {
-    date: string;
-    open: string;
-    high: string;
-    low: string;
-    close: string;
-  };
-
-  export type ProcessedDailyTrend = {
-    date: Date;
-    difference: number;
-    volatility: number;
-  }
+};
 
 export type CurrencyPair = {
   id: string;
@@ -33,14 +20,8 @@ export type UseCurrencyDataReturn = {
 
 export type UseCurrencyData = () => UseCurrencyDataReturn;
 
-export type SymbolPair = { display: string, apiParam: string };
-
 export type UseSymbolTabsType = () => {
   currentSymbol: string;
   handleSelectSymbol: (symbol: string) => void;
   SymbolPairs: SymbolPair[];
 };
-
-export type LoadingVariant = 'spinner' | 'dots' | 'skeleton';
-
-export type LoadingSize = 'sm' | 'md' | 'lg';

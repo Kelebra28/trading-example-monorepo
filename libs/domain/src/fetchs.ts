@@ -1,4 +1,4 @@
-import {  HistoricalData, CurrencyPair, HttpClient} from '../../utils/src';
+import {  HistoricalData, CurrencyPair, HttpClient} from '@monorepo/utils';
 
 export const fetchCurrencyPairs = async (
   httpClient: HttpClient,

@@ -25,8 +25,7 @@ ChartJS.register(
   zoomPlugin
 );
 
-import { PriceChartProps } from "../../../../../libs/utils/src";
-import { formatDate } from "../../../../../libs/utils/src";
+import { PriceChartProps, formatDate } from "@monorepo/utils";
 
 export const PriceChart = ({ data }: PriceChartProps) => {
   const chartData = {

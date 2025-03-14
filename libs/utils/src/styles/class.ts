@@ -1,3 +1,6 @@
+
+import { ClassValue, ClassArray } from "src/types/style-types";
+
 export const cn = (...inputs: Array<ClassValue | ClassArray>): string => {
     let result: string[] = [];
   

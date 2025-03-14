@@ -1,6 +1,6 @@
 "use client";
 import { Loading } from "../Loading/Loading";
-import { BannerViewModel } from "../../../../utils/src";
+import { BannerViewModel } from "@monorepo/utils";
 
 export const Banner = ({ viewModel }: { viewModel: BannerViewModel }) => {
   const { pair, pointValue, lastUpdatedTime, error, loading } = viewModel;

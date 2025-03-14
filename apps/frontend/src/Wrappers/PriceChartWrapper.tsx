@@ -1,12 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { PriceChartWrapperProps } from "../../../../libs/utils/src";
-import { Loading } from "../../../../libs/ui-components/src";
+import { PriceChartWrapperProps } from "@monorepo/utils/types";
+import { Loading } from "@monorepo/ui-components";
 
 const PriceChart = dynamic(
   () =>
-    import("../../../../libs/ui-components/src").then((mod) => mod.PriceChart),
+    import("@monorepo/ui-components").then((mod) => mod.PriceChart),
   {
     ssr: false,
     loading: () => (

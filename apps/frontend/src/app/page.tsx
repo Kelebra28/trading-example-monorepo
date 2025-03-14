@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { HistoricalDataWrapper } from "../Wrappers/HistoricalDataWrapper";
 import { BannerContainer, SymbolTabsContainer } from "@/containers/";
-import { Loading } from "../../../../libs/ui-components/src";
+import { Loading } from "@monorepo/ui-components";
 
 const DashboardPage = async ({
   searchParams,

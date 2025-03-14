@@ -2,8 +2,7 @@
 
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "../../../../utils/src";
-import { LoadingProps, variantClasses , sizeClasses} from "../../../../utils/src";
+import { cn, LoadingProps, variantClasses , sizeClasses } from "@monorepo/utils";
 
 export const Loading = ({
   variant = "spinner",

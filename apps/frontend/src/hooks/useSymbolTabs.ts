@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { SymbolPairs } from "../../../../libs/utils/src";
+import { SymbolPairs } from "@monorepo/utils";
 
 export const useSymbolTabs = () => {
   const router = useRouter();

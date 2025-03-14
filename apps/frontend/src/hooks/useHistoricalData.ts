@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchHistoricalData } from "../../../../libs/domain/src";
-import { axiosClient } from "../../../../libs/domain/src";
-import { HistoricalData } from "../../../../libs/utils/src";
+import { fetchHistoricalData, axiosClient } from "@monorepo/domain";
+import { HistoricalData } from "@monorepo/utils/types";
 
 export const useHistoricalData = (symbol: string) => {
   const [data, setData] = useState<HistoricalData[]>([]);

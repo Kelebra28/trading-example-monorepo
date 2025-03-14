@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { WSClient } from "../../../../libs/domain/src";
-import { CurrencyData } from "../../../../libs/utils/src";
+import { WSClient } from "@monorepo/domain";
+import { CurrencyData } from "@monorepo/utils/types";
 
 export const useCurrencyData = () => {
   const [currencyData, setCurrencyData] = useState<CurrencyData | null>(null);

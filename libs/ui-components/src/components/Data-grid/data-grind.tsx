@@ -1,4 +1,3 @@
-
 'use client';
 
 import {
@@ -8,13 +7,17 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-interface DataGridProps<T> {
+interface DataGridProps<T extends Record<string, any>> {
   data: T[];
-  columns: ColumnDef<T>[];
+  columns: ColumnDef<T, keyof T>[];
 }
 
-export const DataGrid = <T,>({ data, columns }: DataGridProps<T>) => {
-  const table = useReactTable({
+export const DataGrid = <T extends Record<string, any>>(
+  props: DataGridProps<T>
+) => {
+  const { data, columns } = props;
+  
+  const table = useReactTable<T>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -24,7 +27,7 @@ export const DataGrid = <T,>({ data, columns }: DataGridProps<T>) => {
     <div className="rounded-md border overflow-hidden shadow-lg">
       <div className="relative max-h-[500px] overflow-auto">
         <table className="w-full">
-        <thead className="sticky top-0 bg-gray-100 z-10">
+          <thead className="sticky top-0 bg-gray-100 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (

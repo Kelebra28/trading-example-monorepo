@@ -2,8 +2,10 @@
   "name": "monorepo",
   "version": "1.0.0",
   "workspaces": [
-    "apps/*",
-    "libs/*"
+    "apps/frontend",
+    "libs/utils",
+    "libs/domain",
+    "libs/ui-components"
   ],
   "scripts": {
     "build": "turbo run build",
@@ -11,7 +13,7 @@
     "lint": "turbo run lint",
     "clean": "rm -rf node_modules && rm -rf apps/*/node_modules && rm -rf libs/*/node_modules"
   },
-  "packageManager": "yarn@3.6.4",
+  "packageManager": "yarn@4.7.0",
   "dependencies": {
     "dotenv": "^16.4.7",
     "turbo": "latest"

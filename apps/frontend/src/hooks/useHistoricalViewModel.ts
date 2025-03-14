@@ -4,7 +4,7 @@ import { useHistoricalData } from "@/hooks/useHistoricalData";
 import {
   calculateDailyTrend,
   transformHistoricalData,
-} from "../../../../libs/utils/src";
+} from "@monorepo/utils";
 
 export const useHistoricalViewModel = (symbol: string) => {
   const { data: historicalData, loading, error } = useHistoricalData(symbol);

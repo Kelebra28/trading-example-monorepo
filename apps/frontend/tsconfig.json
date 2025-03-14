@@ -19,7 +19,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@monorepo/domain": ["../../libs/domain/dist/"],
+      "@monorepo/domain/*": ["../../libs/domain/dist/*"],
+      "@monorepo/ui-components": ["../../libs/ui-components/dist"],
+      "@monorepo/ui-components/*": ["../../libs/ui-components/dist/*"],
+      "@monorepo/utils": ["../../libs/utils/dist"],
+      "@monorepo/utils/*": ["../../libs/utils/dist/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

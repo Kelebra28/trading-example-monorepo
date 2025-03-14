@@ -1,4 +1,4 @@
-import { HttpClient } from '../../utils/src';
+import { HttpClient } from '@monorepo/utils';
 import axios from 'axios';
 
 export const axiosClient: HttpClient = {

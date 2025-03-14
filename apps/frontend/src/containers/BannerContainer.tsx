@@ -1,8 +1,7 @@
 "use client";
 
-import { Banner } from "../../../../libs/ui-components/src";
+import { Banner } from "@monorepo/ui-components";
 import { useCurrencyData } from "@/hooks/useCurrencyData";
-import { Loading } from "../../../../libs/ui-components/src";
 
 export const BannerContainer = () => {
   const { currencyData, error, lastUpdated, loading } = useCurrencyData();

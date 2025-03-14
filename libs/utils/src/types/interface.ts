@@ -1,13 +1,11 @@
+import { UseCurrencyData } from "./types";
 
 import {
-  UseCurrencyData,
   HistoricalData,
   DailyTrendData,
+  TransformedHistoricalData,
   SymbolPair,
-  LoadingSize,
-  LoadingVariant
-} from "./types";
-
+} from "./financial-types";
 export interface PriceChartProps {
   data: Array<{
     timestamp: number;
@@ -31,10 +29,6 @@ export interface HistoricalDataItem {
   date: string;
   high: string;
 }
-export interface TransformedHistoricalData {
-  timestamp: number;
-  high: number;
-}
 
 export interface HistoricalDataViewProps {
   historicalData: HistoricalData[];
@@ -50,12 +44,13 @@ export interface SymbolTabsProps {
     handleSelectSymbol: (symbol: string) => void;
     SymbolPairs: readonly SymbolPair[];
   };
-}export interface BannerViewModel {
+}
+export interface BannerViewModel {
   pair?: string;
   pointValue?: string;
   lastUpdatedTime?: string;
   error?: string | null;
-  loading?: boolean
+  loading?: boolean;
 }
 
 export interface SymbolTabsViewModel {
@@ -65,14 +60,6 @@ export interface SymbolTabsViewModel {
 }
 export interface HistoricalDataWrapperProps {
   symbol: string;
-}
-
-export interface LoadingProps {
-  variant?: LoadingVariant;
-  size?: LoadingSize;
-  className?: string;
-  fullScreen?: boolean;
-  message?: string;
 }
 
 export interface PriceChartWrapperProps {

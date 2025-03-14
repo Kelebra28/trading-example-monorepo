@@ -1,19 +1,20 @@
-'use client';
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, TimeScale, } from 'chart.js';
-import zoomPlugin from 'chartjs-plugin-zoom';
-import React from 'react';
+"use client";
+import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, TimeScale, } from "chart.js";
+import zoomPlugin from "chartjs-plugin-zoom";
+import React from "react";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, TimeScale, zoomPlugin);
+import { formatDate } from "@monorepo/utils";
 export const PriceChart = ({ data }) => {
     const chartData = {
-        labels: data.map(d => new Date(d.timestamp).toLocaleDateString()),
+        labels: data.map((d) => formatDate(new Date(d.timestamp))),
         datasets: [
             {
-                label: 'Closing Price',
-                data: data.map(d => d.close),
-                borderColor: 'hsl(221.2 83.2% 53.3%)',
+                label: "High Price",
+                data: data.map((d) => d.high),
+                borderColor: "hsl(221.2 83.2% 53.3%)",
                 tension: 0.1,
-                pointRadius: 2,
+                pointRadius: 4,
             },
         ],
     };
@@ -25,11 +26,11 @@ export const PriceChart = ({ data }) => {
                 zoom: {
                     wheel: { enabled: true },
                     pinch: { enabled: true },
-                    mode: 'x',
+                    mode: "x",
                 },
                 pan: {
                     enabled: true,
-                    mode: 'x',
+                    mode: "x",
                 },
             },
         },

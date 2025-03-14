@@ -1,2 +1,4 @@
-import * as React from 'react';
-export declare const Banner: () => React.JSX.Element;
+import { BannerViewModel } from "@monorepo/utils";
+export declare const Banner: ({ viewModel }: {
+    viewModel: BannerViewModel;
+}) => import("react").JSX.Element;
