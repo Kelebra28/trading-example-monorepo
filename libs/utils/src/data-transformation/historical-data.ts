@@ -1,4 +1,3 @@
-// histical-data.ts
 import { HistoricalData, DailyTrendData } from '../types/financial-types';
 
 
