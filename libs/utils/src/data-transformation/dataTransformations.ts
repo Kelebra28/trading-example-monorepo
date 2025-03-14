@@ -1,4 +1,3 @@
-// dataTransformation.ts
 import { HistoricalData, TransformedHistoricalData } from "../types";
 
 export const transformHistoricalData = (

@@ -1,4 +1,3 @@
-//types index
 export * from './financial-types'
 export * from './interface';
 export * from './component-types'

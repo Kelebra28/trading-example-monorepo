@@ -2,15 +2,12 @@ import { formatNumber, formatDate, formatSymbol } from '../formats';
 
 describe('formatNumber', () => {
   it('should format numbers with decimal precision', () => {
-    // Casos con más de 3 decimales
     expect(formatNumber(123.45678)).toBe('123.456');
     expect(formatNumber(0.9999)).toBe('0.999');
     
-    // Casos con menos de 3 decimales
     expect(formatNumber(42)).toBe('42.000');
     expect(formatNumber(100.2)).toBe('100.200');
     
-    // Casos edge
     expect(formatNumber(0)).toBe('0.000');
     expect(formatNumber(NaN)).toBe('NaN');
   });
@@ -39,9 +36,9 @@ describe('formatSymbol', () => {
   });
 
   it('should leave other lengths unchanged', () => {
-    expect(formatSymbol('BTCUSDT')).toBe('BTCUSDT');    // 7 caracteres
-    expect(formatSymbol('XRP')).toBe('XRP');            // 3 caracteres
-    expect(formatSymbol('')).toBe('');                  // Empty string
+    expect(formatSymbol('BTCUSDT')).toBe('BTCUSDT');   
+    expect(formatSymbol('XRP')).toBe('XRP');       
+    expect(formatSymbol('')).toBe('');                 
   });
 
   it('should handle mixed case symbols', () => {

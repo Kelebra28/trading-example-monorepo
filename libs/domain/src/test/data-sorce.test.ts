@@ -1,7 +1,6 @@
 import { axiosClient } from '../data_sorce';
 import axios from 'axios';
 
-// Mockear axios
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 

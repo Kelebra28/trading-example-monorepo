@@ -1,4 +1,3 @@
-// financial-types
 export type HistoricalData = {
     date: string;
     open: string;
