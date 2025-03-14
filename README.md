@@ -29,12 +29,55 @@ The GUI supports the following user stories:
    ```bash
    git clone https://github.com/Kelebra28/trading-exaple-monorepo.git
    ```
-2. Install dependencies:
-   ```bash
-   yarn install
-   ```
-
 ---
+
+# Yarn Commands Guide
+
+
+## Commands Overview
+
+### 1. Install Dependencies
+```sh
+yarn install
+```
+Installs all project dependencies based on the `package.json` file. This command ensures that all required packages are available for development and production.
+
+### 2. Build Utils Workspace
+```sh
+yarn workspace @monorepo/utils build
+```
+Builds the `@monorepo/utils` workspace, compiling its source code and preparing it for use in other parts of the monorepo.
+
+### 3. Build Domain Workspace
+```sh
+yarn workspace @monorepo/domain build
+```
+Builds the `@monorepo/domain` workspace, ensuring that the business logic layer is compiled and ready for use.
+
+### 4. Build UI Components
+```sh
+yarn workspace @monorepo/ui/components build
+```
+Builds the `@monorepo/ui/components` workspace, compiling UI components that are shared across the project.
+
+### 5. Navigate to Frontend Application
+```sh
+cd apps/frontend
+```
+Moves into the `apps/frontend` directory, where the frontend application is located.
+
+### 6. Start Frontend Development Server
+```sh
+yarn dev
+```
+Starts the development server for the frontend application, allowing local testing and development.
+
+## Notes
+- Ensure all dependencies are installed before running build commands.
+- Running `yarn dev` requires navigating to `apps/frontend` first.
+- If a build fails, check for errors in the corresponding workspace.
+
+
 
 ## Running the Project
 
@@ -49,6 +92,32 @@ The GUI supports the following user stories:
 3. Open [http://localhost:3002](http://localhost:3002) in your browser.
 
 ---
+
+# Environment Setup
+
+To run the project correctly, you need to install `dotenv` and configure environment variables.
+
+## Configure Environment Variables
+
+Create a `.env` file in the `apps/frontend/.env` directory and add the following variables:
+
+```
+NEXT_PUBLIC_API_URL=https://.....
+NEXT_PUBLIC_SOCKET_URL=wss://....
+```
+
+## Usage in the Project
+
+In your application code, you can access these variables using:
+
+```js
+process.env.NEXT_PUBLIC_API_URL;
+process.env.NEXT_PUBLIC_SOCKET_URL;
+```
+
+That's it! Your application should now recognize the environment variables correctly.
+
+
 
 ## Project Structure
 
