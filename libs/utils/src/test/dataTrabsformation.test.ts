@@ -1,5 +1,5 @@
-import { HistoricalData, DailyTrendData } from '../types/types';
-import { calculateDailyTrend } from '../dataTrasformation/historical-data';
+import { HistoricalData, DailyTrendData } from '../';
+import { calculateDailyTrend } from '../';
 
 
 describe('calculateDailyTrend', () => {
