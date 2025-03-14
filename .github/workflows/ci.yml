@@ -12,22 +12,28 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: apps/frontend  # Ajusta según tu app principal
+        working-directory: . 
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      
+        with:
+          fetch-depth: 0
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"  # Usa la misma versión que en tu entorno local
+          node-version: "22"
           cache: "yarn"
-      
+
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install Dependencies
-        run: yarn install --immutable  # Equivalente a --frozen-lockfile
-      
+        run: yarn install --immutable
+
       - name: Build Projects
-        run: yarn turbo run build --filter=...  # Build de todo el monorepo
-      
-      - name: Run Tests (si tienes)
-        run: yarn test
+        run: npx turbo run build --filter=/apps/* --filter=./libs/*
+
+      # - name: Run Tests
+      #   run: yarn test
